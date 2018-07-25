@@ -1,0 +1,26 @@
+.primary-custom-btn{
+  button {
+    cursor: pointer;
+    width: 200px;
+    height: 60px;
+    background: transparent;
+    border: 2px solid white;
+    border-radius: 100px;
+    color: white;
+    font-size: 18px;
+    margin: 0 15px;
+    opacity: 1;
+    transition: all 0.5s;
+    &:active {
+      background: transparent;
+      transform: scale(2);
+      opacity: 0;
+    }
+    &:focus{
+      outline: 0;
+    }
+    &:hover{
+      transform: scale(1.05);
+    }
+  }
+}
