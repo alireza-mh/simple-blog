@@ -1,6 +1,8 @@
 import * as React from "react";
 import API from "../../lib/api";
 import "./style.less";
+import {Col, Row, Container} from "reactstrap";
+import Header from "../../components/Header";
 
 interface IProps {
 }
@@ -18,7 +20,11 @@ export default class Blog extends React.Component<IProps, IState> {
 
     public render() {
         return (
-            <div></div>
+            <div>
+                <Header title={"Our Blog"} subTitle={"Home - Blog"}/>
+            <Container>
+            </Container>
+            </div>
         );
     }
 }

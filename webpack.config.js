@@ -77,7 +77,7 @@ module.exports = {
             //   loader: 'svg-inline-loader'
             // },
             {test: /\.(eot|ttf|woff)$/, loader: "file-loader"},
-            {test: /\.jpg$/, use: "file-loader"},
+            {test: /\.(jpg)$/, use: "file-loader"},
             {
                 test: /\.less$/,
                 use: [
