@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Row} from "reactstrap";
+import {Row, Col} from "reactstrap";
 
 const Logo = require("../../assets/images/Logo.png");
 import "./style.less";
@@ -29,7 +29,7 @@ export default class Header extends React.Component<IProps, IState> {
                         </div>
                         <div className={"navigation"}>
                             <NavigationLink/>
-                            <Button>Create Account</Button>
+                            <Button title="create account" alt="create account">Create Account</Button>
                         </div>
                     </div>
                     <div className={"header-wrapper"}>
