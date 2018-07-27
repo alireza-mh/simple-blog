@@ -1,3 +1,4 @@
+// needed for importing images through typescript
 declare module "*.css" {
     const _default: string;
     export default _default;

@@ -5,6 +5,7 @@ import {Col, Row, Container} from "reactstrap";
 import Header from "../../components/Header";
 import PostCard from "../../components/PostCard";
 import PostList from "../../components/PostList";
+import Footer from "../../components/Footer";
 
 interface IProps {
 }
@@ -32,6 +33,7 @@ export default class Blog extends React.Component<IProps, IState> {
                         </Col>
                     </Row>
                 </Container>
+                <Footer/>
             </div>
         );
     }
