@@ -13,7 +13,7 @@ const handleEllipseNumber = (count, props) => {
     let widthVal = props.width ? props.width : 770;
     for (let i = 0; i < count; i++) {
         JSXArray.push(
-            <div className="ellipse"
+            <div className="ellipse" key={"ellipse " + i}
                  style={{
                      width: widthVal + "px",
                      height: heightVal + "px",

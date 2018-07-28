@@ -1,7 +1,8 @@
 import * as React from "react";
 import Ellipse from "./elllipses";
-import "./style.less";
+import {Link} from "react-router-dom";
 import Button from "reactstrap/lib/Button";
+import "./style.less";
 
 interface IProps {
 }
@@ -28,6 +29,19 @@ export default class Footer extends React.Component<IProps, IState> {
                     <div className="footer-subscribe">
                         <input placeholder="Enter Email address"/>
                         <Button >Subscribe</Button>
+                    </div>
+                </div>
+                <div className="footer-bottom">
+                    <div className="copyright">
+                        Design by <strong>Golden Layers</strong> | Powered by Wordpress
+                    </div>
+                    <div className="footer-navigation">
+                        <Link to={"#"}>home</Link>
+                        <Link to={"#"}>about us</Link>
+                        <Link to={"#"}>pages</Link>
+                        <Link to={"#"}>gallery</Link>
+                        <Link to={"#"}>blog</Link>
+                        <Link to={"#"}>contact</Link>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 .footer-container {
   display: flex;
+  flex-direction: column;
   position: relative;
   background: #ca73d8; /* Old browsers */
   background: -moz-linear-gradient(-45deg, #ca73d8 0%, #392cb0 100%); /* FF3.6-15 */
@@ -46,6 +47,30 @@
         color: white;
         background: #3b2eb2;
         cursor: pointer;
+      }
+    }
+  }
+  .footer-bottom{
+    display: flex;
+    align-items: center;
+    position: relative;
+    bottom: 0;
+    background: rgba(0,0,0,.07);
+    height: 60px;
+    width: 100%;
+    color: white;
+    padding: 0 5%;
+    .copyright{
+
+    }
+    .footer-navigation{
+      display: flex;
+      margin-left: auto;
+      text-transform: uppercase;
+      a{
+        font-size: 14px;
+        margin: 0 10px;
+        color:white;
       }
     }
   }
