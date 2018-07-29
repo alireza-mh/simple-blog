@@ -6,6 +6,7 @@ import Header from "../../components/Header";
 import PostCard from "../../components/PostCard";
 import PostList from "../../components/PostList";
 import Footer from "../../components/Footer";
+import Search from "../../components/Search";
 
 interface IProps {
 }
@@ -30,6 +31,7 @@ export default class Blog extends React.Component<IProps, IState> {
                             <PostList/>
                         </Col>
                         <Col md={4}>
+                            <Search/>
                         </Col>
                     </Row>
                 </Container>
