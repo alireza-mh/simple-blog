@@ -2,9 +2,11 @@ import * as React from "react";
 import {Col, Row} from "reactstrap";
 import "./style.less";
 import PostCard from "../PostCard";
+import {PostListMock} from "./mockApi";
 
 interface IProps {
 }
+
 interface IState {
 }
 
@@ -12,37 +14,26 @@ export default class PostList extends React.Component<IProps, IState> {
     constructor(props) {
         super(props);
     }
+
+    handlePage = () => {
+        let viewArray = [];
+        for (let i = 0 ; i < PostListMock.paginationCount ; i++) {
+            let item = PostListMock.list[i];
+            viewArray.push(<Col md={6} style={{marginBottom: "80px"}}>
+                <PostCard
+                    key={item.id}
+                    title={item.title}
+                    author={item.author}
+                    date={item.date}
+                    content={item.content}/>
+            </Col>);
+        }
+        return viewArray;
+    }
     render() {
-        return(
+        return (
             <Row>
-                <Col md={6} style={{marginBottom: "80px"}}>
-                    <PostCard
-                        title={"Some long text that you not expect from a title"}
-                        author={"Alireza"}
-                        date={"5 Aug 1990"}
-                        content={"lorem ipsum this have no meaning and only used for Demo. please dont overlook this. some more text is needed"}/>
-                </Col>
-                <Col md={6} style={{marginBottom: "80px"}}>
-                    <PostCard
-                        title={"Title"}
-                        author={"Alireza"}
-                        date={"5 Aug 1990"}
-                        content={"lorem ipsum this have no meaning and only used for Demo. please dont overlook this. some more text is needed"}/>
-                </Col>
-                <Col md={6} style={{marginBottom: "80px"}}>
-                    <PostCard
-                        title={"Title"}
-                        author={"Alireza"}
-                        date={"5 Aug 1990"}
-                        content={"lorem ipsum this have no meaning and only used for Demo. please dont overlook this. some more text is needed"}/>
-                </Col>
-                <Col md={6} style={{marginBottom: "80px"}}>
-                    <PostCard
-                        title={"Title"}
-                        author={"Alireza"}
-                        date={"5 Aug 1990"}
-                        content={"lorem ipsum this have no meaning and only used for Demo. please dont overlook this. some more text is needed"}/>
-                </Col>
+                {this.handlePage()}
             </Row>
 
         );
