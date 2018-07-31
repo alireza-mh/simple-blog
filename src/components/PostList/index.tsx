@@ -19,9 +19,8 @@ export default class PostList extends React.Component<IProps, IState> {
         let viewArray = [];
         for (let i = 0 ; i < PostListMock.paginationCount ; i++) {
             let item = PostListMock.list[i];
-            viewArray.push(<Col md={6} style={{marginBottom: "80px"}}>
+            viewArray.push(<Col md={6} style={{marginBottom: "80px"}} key={item.id}>
                 <PostCard
-                    key={item.id}
                     title={item.title}
                     author={item.author}
                     date={item.date}

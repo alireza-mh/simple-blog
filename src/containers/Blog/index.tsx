@@ -8,6 +8,7 @@ import PostList from "../../components/PostList";
 import Footer from "../../components/Footer";
 import Search from "../../components/Search";
 import CategoriesLinks from "../../components/CategoriesLinks";
+import SidebarPostList from "../../components/SidebarPostList";
 
 interface IProps {
 }
@@ -33,7 +34,8 @@ export default class Blog extends React.Component<IProps, IState> {
                         </Col>
                         <Col md={4}>
                             <Search/>
-                            <CategoriesLinks onCategoriesSelect={(val) => {console.log(val)}}/>
+                            <CategoriesLinks onCategoriesSelect={(val) => {console.log(val); }}/>
+                            <SidebarPostList/>
                         </Col>
                     </Row>
                 </Container>
