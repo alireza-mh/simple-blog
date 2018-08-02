@@ -88,4 +88,4 @@ export const PostListMock: IAPI = {
     total: 8,
     paginationCount: 6,
     page: 1
-}
+};
