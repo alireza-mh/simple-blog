@@ -9,5 +9,5 @@ then
 
 `yarn start`
 
-project will be run at port 3000.
+project will be run at port `3000`.
 any contribution are welcome
