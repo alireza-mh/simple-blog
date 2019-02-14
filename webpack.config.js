@@ -18,7 +18,7 @@ new webpack.DefinePlugin({
 
 // plugins
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     context: sourcePath,
@@ -31,53 +31,43 @@ module.exports = {
         },
     },
     entry: {
-        main: ["babel-polyfill", "./index.tsx"],
+        main: ["@babel/polyfill", "./index.tsx"],
         vendor: [
             "react",
             "react-dom",
             "react-redux",
             "react-router",
             "redux",
-            "lodash",
         ],
     },
     module: {
-        loaders: [
+        rules: [
             // .ts, .tsx
             {
-                test: /\.tsx?$/,
-                use: isProduction
-                    ? "ts-loader?module=es6"
-                    : [
-                        "react-hot-loader/webpack",
-                        "ts-loader",
-                    ],
+                test: /\.(js|tsx?)$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: { babelrc: true, plugins: ['react-hot-loader/babel'] }
+                    },
+                ]
             },
             // static assets
             {test: /\.html$/, use: "html-loader"},
-            {test: /\.png$/, use: "url-loader?limit=10000"}
-        ],
-        rules: [
             {test:
-                 /\.po$/,
-                 loader: 'i18next-po-loader'
-             },
-            {
-                enforce: "pre",
-                loader: "tslint-loader",
-                test: /\.tsx?$/,
+                    /\.po$/,
+                loader: 'i18next-po-loader'
             },
-            {
-                loader: "react-hot-loader/webpack!ts-loader",
-                test: /\.tsx?$/,
-            },
-            {test: /\.svg$/, use: "file-loader"},
+            // {
+            //     enforce: "pre",
+            //     loader: "tslint-loader",
+            //     test: /\.tsx?$/,
+            // },
             // {
             //   test: /\.svg$/,
             //   loader: 'svg-inline-loader'
             // },
-            {test: /\.(eot|ttf|woff|woff2)$/, loader: "file-loader"},
-            {test: /\.(jpg)$/, use: "file-loader"},
             {
                 test: /\.less$/,
                 use: [
@@ -108,11 +98,32 @@ module.exports = {
                 ],
             },
             {
-                test: /\.png$/,
+                test:  /\.(svg|jpe?g|png|eot|ttf|woff2?)$/,
                 exclude: /node_modules/,
-                loader: 'file-loader?name=images/[name].[ext]',
+                loader: 'url-loader',
+                query: {
+                    limit: 10000,
+                    name: 'images/name=images/[name].[ext]'
+                }
             },
         ],
+    },
+    optimization: {
+        splitChunks: {
+            name: true,
+            cacheGroups: {
+                commons: {
+                    chunks: 'initial',
+                    minChunks: 2
+                },
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    chunks: 'all',
+                    priority: -10
+                }
+            }
+        },
+        runtimeChunk: true
     },
     node: {
         // workaround for webpack-dev-server issue
@@ -121,7 +132,8 @@ module.exports = {
         net: "empty",
     },
     output: {
-        filename: "bundle.js",
+        filename: "[name].js",
+        chunkFilename: '[id].[chunkhash].js',
         path: outPath,
         publicPath: "/",
     },
@@ -133,13 +145,8 @@ module.exports = {
         //        compress: true
         //    }
         //}),
-        new webpack.optimize.CommonsChunkPlugin({
-            filename: "vendor.bundle.js",
-            minChunks: Infinity,
-            name: "vendor",
-        }),
         new webpack.optimize.AggressiveMergingPlugin(),
-        new ExtractTextPlugin({
+        new MiniCssExtractPlugin({
             disable: !isProduction,
             filename: "styles.css",
         }),
